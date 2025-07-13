@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向日葵背景页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .background-image {
+            width: 100%;
+            height: 100%;
+            background-image: url('xiangrikui.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .background-image:hover {
+            transform: scale(1.02);
+        }
+
+        .click-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-family: 'Microsoft YaHei', sans-serif;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .background-image:hover + .click-hint,
+        .click-hint:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image" onclick="redirectToSogou()"></div>
+    <div class="click-hint">点击图片跳转到搜狗输入法官网</div>
+
+    <script>
+        function redirectToSogou() {
+            window.open('https://www.sougoshurufa.com/', '_blank');
+        }
+
+        // 添加键盘事件支持
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                redirectToSogou();
+            }
+        });
+    </script>
+</body>
+</html> 
