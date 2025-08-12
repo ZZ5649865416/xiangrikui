@@ -16,61 +16,84 @@
             height: 100vh;
             overflow: hidden;
             cursor: pointer;
-        }
-
-        .background-image {
-            width: 100%;
-            height: 100%;
             background-image: url('xiangrikui.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             transition: transform 0.3s ease;
         }
 
-        .background-image:hover {
+        body:hover {
             transform: scale(1.02);
         }
 
         .click-hint {
             position: absolute;
-            bottom: 20px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-family: 'Microsoft YaHei', sans-serif;
-            font-size: 14px;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .background-image:hover + .click-hint,
-        .click-hint:hover {
+        body:hover .click-hint {
+            opacity: 1;
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 18px;
+            font-family: 'Microsoft YaHei', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        body.loading .loading {
             opacity: 1;
         }
     </style>
 </head>
-<body>
-    <div class="background-image" onclick="redirectToSogou()"></div>
+<body onclick="redirectToWebsite()">
+    <div class="loading">正在跳转...</div>
     <div class="click-hint">点击图片跳转到指定网站</div>
 
     <script>
-        function redirectToSogou() {
-            window.open('https://www.w6slq12.top/', '_blank');
+        function redirectToWebsite() {
+            // 显示加载提示
+            document.body.classList.add('loading');
+            
+            // 延迟跳转，让用户看到加载提示
+            setTimeout(() => {
+                window.open('https://www.dwy3u8.top/', '_blank');
+            }, 300);
         }
 
         // 添加键盘事件支持
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Enter' || event.key === ' ') {
-                redirectToSogou();
+                redirectToWebsite();
             }
+        });
+
+        // 添加触摸事件支持（移动设备）
+        document.addEventListener('touchstart', function(event) {
+            event.preventDefault();
+            redirectToWebsite();
         });
     </script>
 </body>
-</html> 
+</html>
